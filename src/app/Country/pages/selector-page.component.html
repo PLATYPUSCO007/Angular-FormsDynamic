@@ -1,0 +1,37 @@
+<div>
+    <h1>Selectores Dinamicos</h1>
+    <hr/>
+    <div>
+        <form action="" [formGroup]="formCountry">
+            <label for="region" class="form-label">Region</label>
+            <select name="region" class="form-control" formControlName="region">
+                <option value="">-- Seleccione una Region --</option>
+                <option *ngFor="let region of regions" [value]="region"> {{region}} </option>
+            </select>
+
+            <!-- Countries -->
+            <div *ngIf="countries.length > 0">
+                <label for="pais" class="form-label">Paises</label>
+                <select name="pais" class="form-control" formControlName="pais">
+                    <option value="">-- Seleccione una Pais --</option>
+                    <option *ngFor="let country of countries" [value]="country.cca3"> {{country.name}} </option>
+                </select>
+            </div>
+
+            <!-- borders -->
+            <div *ngIf="borders && borders.length > 0">
+                <label for="borders" class="form-label">Borders</label>
+                <select name="borders" class="form-control" formControlName="borders">
+                    <option value="">-- Seleccione una Borde --</option>
+                    <option *ngFor="let border of borders" [value]="border.cca3"> {{border.name}} </option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <h3>Value Form</h3>
+    <hr/>
+    <pre>{{formCountry.value | json}}</pre>
+</div>
